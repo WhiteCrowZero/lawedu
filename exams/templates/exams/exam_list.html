@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>考试列表</title>
+    <style>
+        .exam-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+
+        .exam-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .exam-duration {
+            color: #666;
+        }
+
+        .start-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>考试列表</h1>
+
+{% for exam in exams %}
+<div class="exam-card">
+    <div class="exam-title">{{ exam.name }}</div>
+    <div class="exam-description">{{ exam.description }}</div>
+    <div class="exam-duration">时长: {{ exam.duration }} 分钟</div>
+    <a href="{% url 'exams:start_exam' exam.id %}" class="start-btn">开始考试</a>
+</div>
+{% empty %}
+<p>当前没有可用的考试</p>
+{% endfor %}
+</body>
+</html>
