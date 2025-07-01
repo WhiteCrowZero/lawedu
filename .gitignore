@@ -2,6 +2,8 @@ lib/*
 */migrations
 */__pycache__/
 */.idea/
+.idea
+__pycache__/
 */.vscode/
 db.sqlite3
 media/
