@@ -1,0 +1,20 @@
+{% load static %}
+{% load thumbnail %}
+
+<div class="ui sticky fixed  menu">
+    <div class="ui container">
+        <a href="/" class="borderless header item">
+            <img class="logo" src="{% static 'img/logo.png' %}">
+            视点
+        </a>
+        <div class="v-header-extra">
+            <div class="ui small icon input v-video-search">
+                <input class="prompt" value="{{ q }}" type="text" placeholder="搜索视频" id="v-search">
+                <i id="search" class="search icon" style="cursor:pointer;"></i>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
