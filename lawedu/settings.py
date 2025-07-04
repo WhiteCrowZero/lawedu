@@ -23,6 +23,7 @@ SECRET_KEY = "django-insecure-=$b_#-(hj)ema%y6p1ghc9cxhu*4$sbvxesk1i+22ze%(&53ky
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -36,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "sorl.thumbnail",
+    'rest_framework',
     "video.apps.VideoConfig",
     "exams.apps.ExamsConfig",
     "model_api.apps.AiConfig",
@@ -132,6 +134,7 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
     ]
 }
 
