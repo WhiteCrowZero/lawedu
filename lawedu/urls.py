@@ -30,6 +30,7 @@ urlpatterns = [
     # 6. 首页配置
     # 使用静态HTML作为首页
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('us/', TemplateView.as_view(template_name='us.html'), name='us'),
 ]
 
 # 7. 静态文件和媒体文件服务（仅开发环境）

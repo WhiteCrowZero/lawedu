@@ -75,14 +75,22 @@ WSGI_APPLICATION = "lawedu.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": 'lawedu',
+#         "USER": 'root',
+#         "PASSWORD": '123456',
+#         "HOST": 'localhost',
+#         "PORT": '3306',
+#     }
+# }
+
+# 服务器使用 sqlite3 数据库，节省服务器资源
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": 'lawedu',
-        "USER": 'root',
-        "PASSWORD": '123456',
-        "HOST": 'localhost',
-        "PORT": '3306',
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # 默认引擎
+        'NAME': BASE_DIR / 'db.sqlite3',        # 数据库文件路径
     }
 }
 
