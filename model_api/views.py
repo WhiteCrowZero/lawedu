@@ -1,3 +1,5 @@
+import json
+
 from pydub import AudioSegment
 from lib.src.img_module import ImageAliyunModule
 from lib.src.llm_module import MainAliyunModule
@@ -175,6 +177,11 @@ def infer(request):
     返回: JSON { reply: 文本, audio_path: '/media/converted/xxx.mp3' }
     """
     text = request.POST.get('text', '').strip()
+    output_audio = request.POST.get('output_audio', 'true')
+    if output_audio == 'true':
+        output_audio = True
+    else:
+        output_audio = False
     img_f = request.FILES.get('image')
     aud_f = request.FILES.get('audio')
     if not (text or img_f or aud_f):
@@ -193,6 +200,7 @@ def infer(request):
             audio_file=aud_path,
             img_file=img_path,
             chat_text=text,
+            output_audio=output_audio,
         )
 
         return JsonResponse({'reply': reply_text, 'audio_path': out_audio})
@@ -215,8 +223,6 @@ def set_role(request):
         return JsonResponse({'error': '设置角色失败'}, status=500)
 
 
-
-
 def role_list(request):
     # 获取搜索关键词
     search_query = request.GET.get('search', '')
@@ -237,6 +243,7 @@ def role_list(request):
         'search_query': search_query,
     }
     return render(request, 'model_api/role_list.html', context)
+
 
 def model_index(request):
     return render(request, 'model_api/model.html')

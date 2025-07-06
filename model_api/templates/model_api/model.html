@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI演示Demo</title>
+    <title>红色星火实践团AI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -579,7 +579,7 @@
             <div class="logo-icon">
                 <i class="fas fa-robot"></i>
             </div>
-            <h1>AI演示Demo</h1>
+            <h1>红色星火实践团AI</h1>
         </div>
     </header>
 
@@ -711,7 +711,6 @@
     const BASE_URL = 'http://127.0.0.1:8000';
     const API_ASR = '/api/model_api/upload/audio/';
     const API_IMG = '/api/model_api/upload/image/';
-    // const API_CHAT = '/api/model_api/predict/';
     const API_INFER = '/api/model_api/infer/';
 
     // DOM元素引用
@@ -901,6 +900,7 @@
             try {
                 let form = new FormData();
                 form.append('text', text);
+                form.append('output_audio', false);
                 if (imageInput.files.length > 0) {
                     form.append('image', imageInput.files[imageInput.files.length - 1]);
                 }
@@ -1051,7 +1051,7 @@
 </script>
 
 <footer>
-    <p>© 2025 AI演示Demo</p>
+    <p>© 2025 红色星火实践团AI</p>
 </footer>
 
 
