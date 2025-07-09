@@ -1,6 +1,6 @@
 # filter.py - 仅保留必要的过滤功能
 import django_filters
-from exam.models import Exam
+from exams.models import Exam
 
 class ExamFilter(django_filters.rest_framework.FilterSet):
     """考试日期范围过滤器"""
