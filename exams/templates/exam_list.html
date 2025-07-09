@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>考试列表</title>
+    <style>
+        .top-banner {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .top-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .exam-container {
+            position: relative;
+
+            padding: 20px;
+
+            background-image: url("img/3.jpg");
+
+            background-size: contain;
+
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+
+        }
+
+        .exam-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: rgba(249, 249, 249, 0.7);
+            position: relative;
+        }
+
+        .exam-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .exam-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .exam-duration {
+            color: #666;
+        }
+
+        .start-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            text-decoration-line: none;
+        }
+
+        .start-btn:hover {
+            background-color: rgb(127, 227, 255);
+
+        }
+
+        .middle-illustration {
+            text-align: center;
+            margin: 30px 0;
+            display: none;
+        }
+
+        .middle-illustration img {
+            max-width: 80%;
+            height: auto;
+        }
+
+        .bottom-info {
+            background-color: #a5a1a1;
+            text-align: center;
+            padding: 20px 0;
+            color: white;
+        }
+
+        .bottom-info img {
+
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .bottom-info img:first-child,
+        .bottom-info img:last-child {
+            max-width: 300px;
+
+        }
+
+        .bottom-info img:nth-child(2) {
+            max-width: 80px;
+
+        }
+    </style>
+</head>
+
+<body>
+<div class="top-banner">
+    <a href="{% url 'home' %}"><img src="../static/img/1.png" alt="顶部 banner"></a>
+</div>
+<h1>考试列表</h1>
+<div class="exam-container">
+    {% for exam in exams %}
+    <div class="exam-card">
+
+        <div class="exam-title">{{ exam.name }}</div>
+        <div class="exam-description">{{ exam.description }}</div>
+        <div class="exam-duration">时长: {{ exam.duration }} 分钟</div>
+        <a href="{% url 'exams:start_exam' exam_id=exam.id %}" class="start-btn">开始考试</a>
+    </div>
+    {% empty %}
+    <p>当前没有可用的考试</p>
+    {% endfor %}
+</div>
+
+
+<div class="bottom-info">
+    <img src="../static/img/4.png" alt="校徽">
+    <img src="../static/img/5.png" alt="校徽">
+    <img src="../static/img/6.png" alt="校徽">
+</div>
+</body>
+
+</html>

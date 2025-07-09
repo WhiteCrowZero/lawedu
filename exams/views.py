@@ -15,7 +15,7 @@ class ExamListView(View):
             'exams': exams,
             'current_time': timezone.now()
         }
-        return render(request, 'exams/exam_list.html', context)
+        return render(request, 'exam_list.html', context)
 
 
 class StartExamView(View):
@@ -51,7 +51,7 @@ class StartExamView(View):
             'questions': exam_data,
             'duration_minutes': exam.duration
         }
-        return render(request, 'exams/exam_page.html', context)
+        return render(request, 'exam_page.html', context)
 
 
 class SubmitExamView(View):
@@ -80,24 +80,27 @@ class SubmitExamView(View):
                 question = Question.objects.get(id=question_id)
                 total_score += question.score
 
-                # 验证答案
-                if question.question_type == 'choice':
-                    # 选择题：验证选项是否正确
-                    selected_option = ChoiceOption.objects.get(id=user_answer)
-                    if selected_option.is_correct:
-                        user_score += question.score
+                try:
+                    # 验证答案
+                    if question.question_type == 'choice':
+                        # 选择题：验证选项是否正确
+                        selected_option = ChoiceOption.objects.get(id=user_answer)
+                        if selected_option.is_correct:
+                            user_score += question.score
 
-                elif question.question_type == 'fill':
-                    # 填空题：验证答案是否匹配
-                    correct_answer = question.answer.text.lower().strip()
-                    if user_answer.lower().strip() == correct_answer:
-                        user_score += question.score
+                    elif question.question_type == 'fill':
+                        # 填空题：验证答案是否匹配
+                        correct_answer = question.answer.text.lower().strip()
+                        if user_answer.lower().strip() == correct_answer:
+                            user_score += question.score
 
-                elif question.question_type == 'judge':
-                    # 判断题：验证答案是否正确
-                    user_is_correct = (user_answer == 'true')
-                    if user_is_correct == question.answer.is_correct:
-                        user_score += question.score
+                    elif question.question_type == 'judge':
+                        # 判断题：验证答案是否正确
+                        user_is_correct = (user_answer == 'true')
+                        if user_is_correct == question.answer.is_correct:
+                            user_score += question.score
+                except (ValueError, ChoiceOption.DoesNotExist, Answer.DoesNotExist):
+                    user_answer = ''
 
                 # 保存用户答案
                 answers[question_id] = user_answer
@@ -106,7 +109,7 @@ class SubmitExamView(View):
                 pass
 
         # 保存考试结果
-        ExamResult.objects.create(
+        result = ExamResult.objects.create(
             exam=exam,
             session_key=session_key,
             score=user_score,
@@ -118,7 +121,7 @@ class SubmitExamView(View):
             'success': True,
             'score': user_score,
             'total_score': total_score,
-            'result_id': ExamResult.objects.latest('id').id
+            'result_id': result.id
         })
 
 
@@ -189,5 +192,5 @@ class ResultView(View):
             'passed': passed,
             'percent': percent
         }
-        return render(request, 'exams/result.html', context)
+        return render(request, 'exam_result.html', context)
 

@@ -4,15 +4,83 @@
 
 {% block content %}
 
-{#
-<div class="classification">#}
-    {# <a class="ui {% if c %}{% else %}red{% endif %} label" href="{% url 'home' %}">全部</a>#}
-    {# {% for item in classification_list %}#}
-    {# <a class="ui {% if c == item.id|stringformat:'s' %}red{% endif %} label" href="?c={{ item.id }}">{{ item.title
-        }}</a>#}
-    {# {% endfor %}#}
-    {#
-</div>#}
+
+<style>
+    .ui.card {
+        border: 1px solid #e5e5e5;
+
+        box-shadow: none;
+
+        transition: all 0.3s ease;
+    }
+
+    .ui.card:hover {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+    }
+
+    .ui.card .header {
+        font-size: 16px;
+
+        font-weight: bold;
+        color: #333;
+
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .ui.card .meta {
+        color: #999;
+
+    }
+
+    .ui.card .description {
+        color: #666;
+
+    }
+
+    .search-bar {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    .search-bar .ui.icon.input {
+        width: 300px;
+
+    }
+
+    .bottom-info {
+        background-color: #a5a1a1;
+        text-align: center;
+        padding: 20px 0;
+        color: white;
+    }
+
+    .bottom-info img {
+
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+
+    .bottom-info img:first-child,
+    .bottom-info img:last-child {
+        max-width: 300px;
+
+    }
+
+    .bottom-info img:nth-child(2) {
+        max-width: 80px;
+
+    }
+</style>
+<div class="v-header-banner">
+
+    <img src="/static/img/7.png" alt="红色星火实践团普法微课" style="max-width: 100%; height: auto;">
+
+</div>
 
 <div class="ui hidden divider"></div>
 <div class="ui grid">
@@ -31,9 +99,9 @@
                 <div class="meta">
                     <span class="date">
                         {% if item.create_time %}
-                            发布于 {{ item.create_time }}
+                        发布于 {{ item.create_time }}
                         {% else %}
-                            刚刚
+                        刚刚
                         {% endif %}
                     </span>
                 </div>
@@ -46,8 +114,17 @@
     {% empty %}
     <h3>暂无数据</h3>
     {% endfor %}
+
 </div>
 
 {% include "base/page_nav.html" %}
+
+
+<div class="bottom-info">
+    <img src="/static/img/4.png" alt="校徽">
+    <img src="/static/img/5.png" alt="校徽">
+    <img src="/static/img/6.png" alt="校徽">
+</div>
+
 
 {% endblock content %}

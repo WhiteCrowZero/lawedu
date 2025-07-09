@@ -25,6 +25,7 @@ class Question(models.Model):
 
     exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='questions')
     question_type = models.CharField("题目类型", max_length=10, choices=QUESTION_TYPES)
+    # answer = models.OneToOneField(Answer, on_delete=models.SET_NULL, null=True, blank=True, related_name='question')
     text = models.TextField("题目内容")
     score = models.PositiveSmallIntegerField("分值", default=1)
     order = models.PositiveSmallIntegerField("排序", default=0)
@@ -33,7 +34,7 @@ class Question(models.Model):
         ordering = ['order']
 
     def __str__(self):
-        return f"{self.get_question_type_display()}: {self.text[:50]}"
+        return f"{self.exam}: {self.text[:50]}"
 
 
 class ChoiceOption(models.Model):
