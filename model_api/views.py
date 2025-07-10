@@ -30,8 +30,8 @@ def model_init():
     # 大模型
     llm_module = MainAliyunModule(api_config=aliyun_config, model="qwen-turbo-latest")
     # 语音合成
-    ttsmaker_config = data_processing.load_config_json("lib/doc/ttsmaker_config.json")
-    t2s_module = TtsMakerModule(audio_root='media/output', api_config=ttsmaker_config)
+    # ttsmaker_config = data_processing.load_config_json("lib/doc/ttsmaker_config.json")
+    t2s_module = TtsMakerModule(audio_root='media/output')
     return AiApiModule(
         s2t_module=s2t_module,
         img_module=img_module,
