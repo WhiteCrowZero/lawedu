@@ -3,6 +3,7 @@
 
 <head>
     <title>{{ exam.name }} - 考试中</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -75,56 +76,56 @@
 </head>
 
 <body>
-    <div id="timer">
-        剩余时间: <span id="minutes">{{ duration_minutes }}</span>:<span id="seconds">00</span>
-        <br>
-        <span>时间结束将自动提交试卷</span>
-    </div>
+<div id="timer">
+    剩余时间: <span id="minutes">{{ duration_minutes }}</span>:<span id="seconds">00</span>
+    <br>
+    <span>时间结束将自动提交试卷</span>
+</div>
 
-    <h1>{{ exam.name }}</h1>
-    <p>{{ exam.description }}</p>
+<h1>{{ exam.name }}</h1>
+<p>{{ exam.description }}</p>
 
 
-    <form id="exam-form">
-        {% for question in questions %}
-        <div class="question" data-id="{{ question.id }}">
-            <div class="question-text">{{ forloop.counter }}. {{ question.text }} ({{ question.score }}分)</div>
+<form id="exam-form">
+    {% for question in questions %}
+    <div class="question" data-id="{{ question.id }}">
+        <div class="question-text">{{ forloop.counter }}. {{ question.text }} ({{ question.score }}分)</div>
 
-            {% if question.type == 'choice' %}
-            <div class="options">
-                {% for option in question.options %}
-                <div class="option">
-                    <input type="radio" name="question-{{ question.id }}" value="{{ option.id }}"
-                        id="option-{{ option.id }}">
-                    <label for="option-{{ option.id }}">{{ option.text }}</label>
+        {% if question.type == 'choice' %}
+        <div class="options">
+            {% for option in question.options %}
+            <div class="option">
+                <input type="radio" name="question-{{ question.id }}" value="{{ option.id }}"
+                       id="option-{{ option.id }}">
+                <label for="option-{{ option.id }}">{{ option.text }}</label>
 
-                </div>
-
-                {% endfor %}
             </div>
 
-            {% elif question.type == 'fill' %}
-            <div class="options">
-                <input type="text" name="question-{{ question.id }}" placeholder="请输入答案">
-            </div>
-
-            {% elif question.type == 'judge' %}
-            <div class="options">
-                <div class="option">
-                    <input type="radio" name="question-{{ question.id }}" value="true" id="true-{{ question.id }}">
-                    <label for="true-{{ question.id }}">正确</label>
-                </div>
-                <div class="option">
-                    <input type="radio" name="question-{{ question.id }}" value="false" id="false-{{ question.id }}">
-                    <label for="false-{{ question.id }}">错误</label>
-                </div>
-            </div>
-            {% endif %}
+            {% endfor %}
         </div>
-        {% endfor %}
 
-        <button type="button" id="submit-btn">提交试卷</button>
-    </form>
+        {% elif question.type == 'fill' %}
+        <div class="options">
+            <input type="text" name="question-{{ question.id }}" placeholder="请输入答案">
+        </div>
+
+        {% elif question.type == 'judge' %}
+        <div class="options">
+            <div class="option">
+                <input type="radio" name="question-{{ question.id }}" value="true" id="true-{{ question.id }}">
+                <label for="true-{{ question.id }}">正确</label>
+            </div>
+            <div class="option">
+                <input type="radio" name="question-{{ question.id }}" value="false" id="false-{{ question.id }}">
+                <label for="false-{{ question.id }}">错误</label>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="button" id="submit-btn">提交试卷</button>
+</form>
 
 <script>
     // 考试计时器
