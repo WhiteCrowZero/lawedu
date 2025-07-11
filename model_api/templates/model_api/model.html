@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 {% load static %}
+<!DOCTYPE html>
 
 <html lang="zh-CN">
 <head>
@@ -575,16 +575,18 @@
 <div class="container">
     <header>
         <div class="logo">
-            <a href="{%  url 'home' %%}">
-                <div class="logo-icon"
-                     style="background: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                    <!-- 用图片替换原来的icon，图片自适应居中 -->
+            <div class="logo-icon"
+                 style="background: var(--primary); width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <!-- 用图片替换原来的icon，图片自适应居中 -->
 
-                    <img src="{% static 'img/星火实践团logo.png' %}" alt="logo"
-                         style="width:150px;height:150px;object-fit:contain;display:block;">
-                </div>
-                <h1>红色星火实践团AI</h1>
-            </a>
+                <img src="{% static 'img/星火实践团logo.png' %}" alt="logo"
+                     style="width:150px;height:150px;object-fit:contain;display:block;">
+            </div>
+            <h1>
+                <a href="{%  url 'home' %}">
+                    红色星火实践团AI
+                </a>
+            </h1>
         </div>
 
     </header>
