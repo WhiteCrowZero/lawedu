@@ -1,14 +1,747 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <title>实践团介绍</title>
-</head>
-<body>
-<h1>实践团介绍</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>红色星火实践团</title>
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-内容：基本介绍、学生、老师、奖项、过去、未来规划
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
 
+        body {
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* 顶部导航栏 */
+        .header {
+            background-color: #9b2b2b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            width: 100%;
+            height: 140px;
+            margin: auto;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 60%;
+            margin-right: 6px;
+        }
+
+        .title {
+            font-size: 30px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .qrcode-item {
+            text-align: center;
+            margin-left: 20px;
+        }
+
+        .qrcode {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 5px;
+        }
+
+        .qrcode-text {
+            font-size: 12px;
+            color: #fff;
+        }
+
+        /* 主体内容容器 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        /* 标题样式 */
+        .section-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: #9b2b2b;
+        }
+
+        /* 基本介绍卡片 */
+        .intro-card {
+            padding: 20px;
+            margin: 0 auto 30px;
+            width: 80%;
+            min-height: 150px;
+            text-align: center;
+            font-size: 16px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro {
+            width: 100%;
+            height: 400px;
+            background-image: cover;
+            position: relative;
+        }
+
+        .text-overlay {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: black;
+            font-size: 20px;
+            font-family: "微软雅黑", sans-serif;
+            width: 80%;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* 列表项（团队成员、指导老师等） */
+        .content-item {
+            margin-bottom: 40px;
+        }
+
+        .content-item h3 {
+            font-size: 23px;
+            color: #fff;
+            background-color: #b52b2b;
+            margin-bottom: 20px;
+            padding: 5px 20px;
+            /* 增加内边距 */
+            border-radius: 8px;
+            display: inline-block;
+            position: relative;
+            padding-left: 20px;
+            /* 增加左侧内边距为图标留出空间 */
+            box-shadow: 0 2px 6px rgba(181, 43, 43, 0.3);
+            /* 添加阴影 */
+        }
+
+        .content-item h2 {
+            font-size: 26px;
+            color: #333;
+            border-left: 5px solid #9b2b2b;
+            padding-left: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .content-item h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: #9b2b2b;
+            background: linear-gradient(to right, #b52b2b 30%, #ccc 70%);
+        }
+
+        .content-item p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+
+        /* 团队成员卡片布局 */
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+            justify-content: center;
+            /* 让团队成员卡片居中显示 */
+        }
+
+        .team-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(33.333% - 20px);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .team-photo {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 3px solid #9b2b2b;
+        }
+
+        .team-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #9b2b2b;
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* 二级列表样式 */
+        .content-item ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .content-item ul li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .content-item ul li::before {
+
+            content: "•";
+            color: rgb(172, 34, 34);
+            font-size: 16px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* 带年份的列表项 */
+        .year-item {
+            margin-bottom: 30px;
+        }
+
+        .year-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #9b2b2b;
+            margin-bottom: 15px;
+        }
+
+        /* 三级列表样式 */
+        .content-item ul ul li {
+            padding-left: 30px;
+        }
+
+        .content-item ul ul li::before {
+            content: "◦";
+            color: red;
+            font-size: 16px;
+        }
+
+        /* 分割线样式 */
+        .divider {
+            border-top: 1px solid #eee;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .divider::after {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 6px;
+            background: linear-gradient(to right, #9b2b2b 0%, #e74c3c 100%);
+            border-radius: 3px;
+        }
+
+        /* 底部版权信息 */
+        .footer {
+            background-color: #999;
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 14px;
+        }
+
+        .footer img {
+            height: 40px;
+            vertical-align: middle;
+            margin: 0 5px;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 992px) {
+            .team-card {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .header-left {
+                margin-bottom: 10px;
+            }
+
+            .qrcode-item {
+                margin: 0 10px;
+            }
+
+            .intro-card {
+                width: 100%;
+            }
+
+            .text-overlay {
+                font-size: 16px;
+            }
+
+            .team-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <div class="header">
+        <div class="header-left">
+            <!-- 实践团 logo -->
+            <img src="{% static 'img/团队介绍/星火实践团logo.png' %}" alt="实践团logo" class="logo">
+            <div class="title">红色星火实践团</div>
+        </div>
+        <div class="header-right">
+            <!-- 抖音二维码 -->
+            <div class="qrcode-item">
+                <img src="{% static 'img/团队介绍/2.jpg' %}" alt="抖音二维码" class="qrcode">
+                <div class="qrcode-text">抖音号</div>
+            </div>
+            <!-- 公众号二维码 -->
+            <div class="qrcode-item">
+                <img src="{% static 'img/团队介绍/1.jpg' %}" alt="公众号二维码" class="qrcode">
+                <div class="qrcode-text">公众号</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主体内容 -->
+    <div class="container">
+        <!-- 关于我们 -->
+        <div class="section-title">关于我们</div>
+
+        <!-- 基本介绍 -->
+        <div class="intro-card">
+            <img src="{% static 'img/团队介绍/3.jpg' %}" alt="团队介绍" class="intro">
+            <p class="text-overlay">
+                基本介绍<br>
+                &emsp;红色星火实践团是由天津工业大学计算机科学与技术学院学生组成的实践团队。<br>
+                &emsp;团队以"传承红色基因，践行青春使命"为宗旨，围绕红色文化传承、法治宣传教育等主题，开展形式多样的社会实践活动。<br>
+                &emsp;红色星火实践团始终秉承"奉献、友爱、互助、进步"的志愿精神，致力于用青春力量服务社会，用专业知识回报国家。<br>
+            </p>
+        </div>
+
+        <div class="content-item">
+            <h2>团队成员</h2>
+
+            <div class="content-item">
+                <h3>队长</h3>
+                <div class="team-members">
+                    <div class="team-card" style="width: calc(50% - 20px);">
+                        <img src="{% static 'img/team_photos/captain1.jpg' %}" alt="队长1照片" class="team-photo">
+                        <div class="team-name">邓雨佳</div>
+                        <div class="team-role">
+                            负责统筹规划，制定活动方案、活动流程，人员分工与任务分配。同时现场管理，在活动进行中监督各项任务的落实情况，应对突发状况，灵活调整计划，保障活动按预期开展，整理活动材料。</div>
+                    </div>
+                    <div class="team-card" style="width: calc(50% - 20px);">
+                        <img src="{% static 'img/team_photos/captain2.jpg' %}" alt="队长2照片" class="team-photo">
+                        <div class="team-name">林志鹏</div>
+                        <div class="team-role">
+                            内外协调，对外与当地政府、学校、乡村等相关单位沟通对接，争取支持与配合，解决活动开展中遇到的场地、资源等问题，对内则要及时了解队员的需求与困难。同时安负责全保障，包括队员的人身安全、财产安全，以及活动过程中的风险防范。
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-item">
+                <h3>网页组</h3>
+                <div class="team-members">
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member1.jpg' %}" alt="成员1照片" class="team-photo">
+                        <div class="team-name">王正旺</div>
+                        <div class="team-role">负责网页整体规划及后端开发</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member2.jpg' %}" alt="成员2照片" class="team-photo">
+                        <div class="team-name">陈弈汀</div>
+                        <div class="team-role">负责网页后端开发</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member3.jpg' %}" alt="成员5照片" class="team-photo">
+                        <div class="team-name">郑依菲</div>
+                        <div class="team-role">负责网页UI设计</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member4.jpg' %}" alt="成员3照片" class="team-photo">
+                        <div class="team-name">王悦</div>
+                        <div class="team-role">负责网页前端开发</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member5.jpg' %}" alt="成员4照片" class="team-photo">
+                        <div class="team-name">贾晗</div>
+                        <div class="team-role">负责网页前端开发</div>
+                    </div>
+
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member6.jpg' %}" alt="成员6照片" class="team-photo">
+                        <div class="team-name">赵琳</div>
+                        <div class="team-role">负责网页前端开发</div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-item">
+                <h3>宣讲组</h3>
+                <div class="team-members">
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member7.jpg' %}" alt="成员7照片" class="team-photo">
+                        <div class="team-name">段宇虹</div>
+                        <div class="team-role">负责天津宣讲</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member8.jpg' %}" alt="成员8照片" class="team-photo">
+                        <div class="team-name">安紫琰</div>
+                        <div class="team-role">负责天津宣讲</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member9.jpg' %}" alt="成员9照片" class="team-photo">
+                        <div class="team-name">蒋一帆</div>
+                        <div class="team-role">负责天津宣讲</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member10.jpg' %}" alt="成员10照片" class="team-photo">
+                        <div class="team-name">穆飘冉</div>
+                        <div class="team-role">负责陕西宣讲</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member11.jpg' %}" alt="成员11照片" class="team-photo">
+                        <div class="team-name">宋鹏飞</div>
+                        <div class="team-role">负责内蒙古宣讲</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member12.jpg' %}" alt="成员12照片" class="team-photo">
+                        <div class="team-name">史航宇</div>
+                        <div class="team-role">负责江苏宣讲</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member13.jpg' %}" alt="成员13照片" class="team-photo">
+                        <div class="team-name">张易萌</div>
+                        <div class="team-role">负责ppt制作《儿童普法之旅：守护成长的法律魔法》</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member14.jpg' %}" alt="成员14照片" class="team-photo">
+                        <div class="team-name">张宏雅</div>
+                        <div class="team-role">负责ppt制作《守护银发群体 共筑法治屏障》</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member15.jpg' %}" alt="成员15照片" class="team-photo">
+                        <div class="team-name">刘子睿</div>
+                        <div class="team-role">负责推文制作拍摄</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member16.jpg' %}" alt="成员16照片" class="team-photo">
+                        <div class="team-name">闫艺晨</div>
+                        <div class="team-role">负责推文制作拍摄</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-item">
+                <h3>墙绘组</h3>
+                <div class="team-members">
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member17.jpg' %}" alt="成员19照片" class="team-photo">
+                        <div class="team-name">常梦婷</div>
+                        <div class="team-role">负责设计墙绘图案</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member18.jpg' %}" alt="成员20照片" class="team-photo">
+                        <div class="team-name">王玥</div>
+                        <div class="team-role">负责调配墙绘颜料</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member19.jpg' %}" alt="成员21照片" class="team-photo">
+                        <div class="team-name">徐紫岚</div>
+                        <div class="team-role">负责绘制墙绘</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member20.jpg' %}" alt="成员22照片" class="team-photo">
+                        <div class="team-name">曹颖</div>
+                        <div class="team-role">负责绘制细节部分</div>
+                    </div>
+                    <div class="team-card">
+                        <img src="{% static 'img/team_photos/member21.jpg' %}" alt="成员23照片" class="team-photo">
+                        <div class="team-name">董雯卓</div>
+                        <div class="team-role">负责后期墙绘维护</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 指导老师 -->
+        <div class="content-item">
+            <h2>指导老师</h2>
+            <ul>
+                <li>王瑞老师：计算机科学与技术学院，指导团队开展三下乡实践活动</li>
+                <li>宋亚亚老师：计算机科学与技术学院，指导团队开展三下乡实践活动</li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 所获奖项 -->
+        <div class="content-item">
+            <h2>所获奖项</h2>
+            <ul>
+                <li>市级荣誉：
+                    <ul>
+                        <li>在2024年天津市“新时代·习近平法治思想实践行”主题实践活动中，“普法宣传青春行，艺工赋能正当时”红色星火实践团获先进集体标兵</li>
+                        <li>在2024年天津市“新时代·习近平法治思想实践行”主题实践活动中，孟庆鲲获先进个人标兵</li>
+                        <li>在2024年天津市“新时代·习近平法治思想实践行”主题实践活动中，宋亚亚获优秀指导教师</li>
+                        <li>在2024年天津市“新时代·习近平法治思想实践行”主题实践活动中，天津工业大学获优秀组织单位；</li>
+                        <li>在共青团天津市委员会、天津市学生联合会联合印发的《关于2024年天津市大中专学生志愿者暑期文化科技卫生“三下乡”社会实践活动的通报》中，“红色星火”实践团队获表扬团队；</li>
+                    </ul>
+                </li>
+                <li>校级荣誉：
+                    <ul>
+                        <li>红色星火实践团获2024年天津工业大学暑期文化科技卫生“三下乡”社会实践活动优秀团队；</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 过往经历 -->
+        <div class="content-item">
+            <h2>过往经历</h2>
+
+            <div class="year-item">
+                <div class="year-title">2024年实践内容与形式创新</div>
+                <ul>
+                    <li>多维场景普法覆盖：
+                        <ul>
+                            <li>以"五进"为核心开展分层宣讲，覆盖宿舍、校园、社区、乡村及网络空间</li>
+                            <li>在宿舍构建"微阵地"，结合电信诈骗案例普及法律知识</li>
+                            <li>在校园通过剧本杀、情景小剧场等沉浸式活动，为1500余名师生开展20余场宣讲</li>
+                            <li>在基层40余个点位开展近百场活动，设计"艺工小游戏"增强参与感</li>
+                            <li>在网络搭建新媒体矩阵，抖音、小红书等平台曝光量超20万次</li>
+                        </ul>
+                    </li>
+                    <li>艺工融合特色凸显：
+                        <ul>
+                            <li>依托计算机与动画专业优势，将法律知识与艺术创作结合</li>
+                            <li>制作法制文化宣传栏、非遗保护法主题漆扇、环境保护法净水实验等</li>
+                            <li>实现"科技+艺术+法律"的跨界传播</li>
+                        </ul>
+                    </li>
+                    <li>研学实践深度结合：
+                        <ul>
+                            <li>前往法院、知识产权局、派出所等地开展实地研学，参与模拟庭审</li>
+                            <li>系统学习《宪法》《民法典》等法律，累计收集典型案例100+</li>
+                            <li>形成"理论学习-实地调研-案例宣讲"的闭环</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="year-item">
+                <div class="year-title">2024年实践成果与社会影响</div>
+                <ul>
+                    <li>素材体系化建设：
+                        <ul>
+                            <li>整理形成法律知识讲解、实践活动教学两大素材库</li>
+                            <li>包含文字、图片、视频等多元形式，为后续普法活动提供标准化支撑</li>
+                            <li>设计钥匙扣、帆布包等文创产品10余款，强化普法传播载体</li>
+                        </ul>
+                    </li>
+                    <li>媒体传播矩阵成型：
+                        <ul>
+                            <li>获静海融媒、中国基层网等10余家媒体报道，累计阅读量超50万次</li>
+                            <li>微信公众号"青听习语"专栏、"法治青年说"微课系列形成品牌效应</li>
+                            <li>构建起线上线下联动的宣传网络</li>
+                        </ul>
+                    </li>
+                    <li>团队能力全面提升：
+                        <ul>
+                            <li>15名成员通过分工协作（如剧本创作、实验设计、媒体运营），形成"策划-执行-总结"的完整能力链</li>
+                            <li>其中3人获校级社会实践先进个人，团队获市级"三下乡"优秀团队提名</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="year-item">
+                <div class="year-title">2024年实践价值与经验沉淀</div>
+                <ul>
+                    <li>理论与实践结合：
+                        <ul>
+                            <li>成员深刻理解习近平法治思想的实践意义，将书本知识转化为基层普法能力</li>
+                            <li>运用网络安全法知识设计情景演绎，帮助乡村老人识别诈骗陷阱</li>
+                        </ul>
+                    </li>
+                    <li>青年责任意识强化：
+                        <ul>
+                            <li>通过服务基层群众，团队认识到青年在法治社会建设中的使命</li>
+                            <li>形成"以所学反哺社会"的共识，如向法律平台发起"法律+"共建倡议，推动普法资源整合</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- 未来规划 -->
+        <div class="content-item">
+            <h2>未来规划</h2>
+
+            <div class="year-item">
+                <div class="year-title">2025 - 2026年实践项目拓展计划</div>
+                <ul>
+                    <li>地域覆盖升级：
+                        <ul>
+                            <li>在巩固天津、北京、江苏现有点位基础上，新增河北、甘肃、内蒙古等地区乡村普法点</li>
+                            <li>2025年计划覆盖100个社区/乡村，建立"京津冀普法实践带"，通过跨省联动扩大影响</li>
+                        </ul>
+                    </li>
+                    <li>主题深度挖掘：
+                        <ul>
+                            <li>新增"数字法治""非遗保护""乡村振兴法律保障"等前沿主题</li>
+                            <li>结合计算机专业开发普法小程序，如"法律知识闯关"H5、AI法律咨询机器人，提升科技赋能普法的精准度</li>
+                        </ul>
+                    </li>
+                    <li>对象精准分层：
+                        <ul>
+                            <li>针对青少年、老年人、企业从业者等不同群体，定制专属普法方案</li>
+                            <li>为青少年开发"法治动漫课"，为企业设计"知识产权合规培训"，为老年人制作防诈骗短视频合集</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="year-item">
+                <div class="year-title">2025 - 2026年形式创新与技术赋能</div>
+                <ul>
+                    <li>沉浸式体验升级：
+                        <ul>
+                            <li>引入VR技术还原法庭场景，开发"法治剧本杀"系列IP</li>
+                            <li>2025年计划推出5部原创剧本，联合高校戏剧社团开展巡回演出</li>
+                            <li>利用3D动画制作《民法典》案例科普短片，在B站、抖音等平台打造"普法网红"账号</li>
+                        </ul>
+                    </li>
+                    <li>线上平台体系化建设：
+                        <ul>
+                            <li>搭建"红色星火普法云平台"，整合微课资源、案例库、互动问答功能，实现"线上学习-线下实践"联动</li>
+                            <li>与短视频平台合作开设"法治青年说"直播栏目，每周邀请法律专家、团队成员进行主题分享</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="year-item">
+                <div class="year-title">2025 - 2026年团队建设与长效机制</div>
+                <ul>
+                    <li>人才梯队培养：
+                        <ul>
+                            <li>建立"青马工程+普法实践"培养体系，每年招募20名新成员</li>
+                            <li>设置策划、创作、媒体、外联等专项小组，开展法律知识培训、宣讲技巧工作坊</li>
+                            <li>打造"专业+普法"复合型团队</li>
+                        </ul>
+                    </li>
+                    <li>共建合作深化：
+                        <ul>
+                            <li>与法院、司法局、律所建立"法律实践基地"，邀请专业人士担任顾问，定期开展案例研讨</li>
+                            <li>联合高校法学社团发起"全国大学生普法联盟"，共享素材库与实践经验，形成跨校协作网络</li>
+                        </ul>
+                    </li>
+                    <li>成果转化机制：
+                        <ul>
+                            <li>将普法素材库升级为"青少年法治教育资源平台"，向中小学免费开放</li>
+                            <li>提炼实践模式形成《艺工融合普法指南》，为其他高校团队提供参考，推动普法实践标准化、可持续化</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="year-item">
+                <div class="year-title">短期与中期目标</div>
+                <ul>
+                    <li>2025年短期目标：
+                        <ul>
+                            <li>完成普法网址开发，覆盖20所中小学</li>
+                            <li>新媒体矩阵粉丝量突破1万</li>
+                            <li>形成3个省级以上媒体报道的标杆项目</li>
+                        </ul>
+                    </li>
+                    <li>2026年中期目标：
+                        <ul>
+                            <li>建立5个跨省实践基地</li>
+                            <li>开发10部原创法治文艺作品</li>
+                            <li>"普法云平台"注册用户达5万人</li>
+                            <li>成为华北地区具有影响力的青年普法品牌</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部版权 -->
+    <div class="footer">
+
+        <img src="{% static 'img/团队介绍/天津工业大学校徽图片.png' %}" alt="天津工业大学校徽">
+        <img src="{% static 'img/团队介绍/计算机科学与技术学院院徽图片.png' %}" alt="计算机学院院徽">
+        <img src="{% static 'img/团队介绍/4.png' %}" alt="计科">
+    </div>
 </body>
+
 </html>
