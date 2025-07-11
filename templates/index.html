@@ -1,13 +1,17 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能教育平台</title>
+    <title>三下乡普法平台</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+          rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -64,7 +68,7 @@
         .hero-content h1 {
             font-weight: 700;
             margin-bottom: 25px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
         }
 
         .hero-content p {
@@ -83,7 +87,7 @@
 
         .carousel-inner {
             border-radius: 10px;
-            box-shadow: 0 2px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.15);
             overflow: hidden;
         }
 
@@ -222,66 +226,88 @@
         }
 
         /* 新增/覆盖样式 */
-.header-banner {
-    background: #a51c1c;
-    color: #fff;
-    padding-bottom: 0;
-}
-.logo-img {
-    width: 90px;
-    height: 90px;
-    object-fit: contain;
-    background: #fff;
-    border-radius: 50%;
-    border: 2px solid #fff;
-}
-.main-title {
-    font-size: 2.8rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-.desc {
-    font-size: 1.1rem;
-    font-weight: 400;
-}
-.welcome-text {
-    font-size: 1rem;
-    margin-top: 10px;
-}
-.icon-circle {
-    width: 56px;
-    height: 56px;
-    background: #fff;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #2366b6;
-    font-size: 2rem;
-    border: 2px solid #eaeaea;
-    margin-bottom: 10px;
-}
-.main-image-section {
-    margin-top: 0;
-    padding: 0 0 0 0;
-}
-.main-img {
-    width: 70vw;
-    max-width: 700px;
-    border-radius: 10px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    background: #fff;
-    object-fit: cover;
-}
-@media (max-width: 768px) {
-    .main-title { font-size: 2rem; }
-    .main-img { width: 95vw; }
-    .logo-img { width: 60px; height: 60px; }
-    .icon-circle { width: 40px; height: 40px; font-size: 1.2rem; }
-}
+        .header-banner {
+            background: #a51c1c;
+            color: #fff;
+            padding-bottom: 0;
+        }
 
-/* 响应式调整 */
+        .logo-img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .main-title {
+            font-size: 2.8rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .desc {
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+
+        .welcome-text {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .icon-circle {
+            width: 56px;
+            height: 56px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2366b6;
+            font-size: 2rem;
+            border: 2px solid #eaeaea;
+            margin-bottom: 10px;
+        }
+
+        .main-image-section {
+            margin-top: 0;
+            padding: 0 0 0 0;
+        }
+
+        .main-img {
+            width: 70vw;
+            max-width: 700px;
+            border-radius: 10px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            background: #fff;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .main-img {
+                width: 95vw;
+            }
+
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .icon-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* 响应式调整 */
         @media (max-width: 992px) {
             .carousel-item {
                 height: 400px;
@@ -321,13 +347,15 @@
 </head>
 <body style="background:#fff;">
 
-    <!-- Hero 区域 -->
+<!-- Hero 区域 -->
 <section class="header-banner" style="background: #a51c1c; color: #fff; padding-bottom: 0;">
     <div class="container-fluid px-0 py-4">
         <!-- 顶部logo和副标题 -->
         <div class="d-flex align-items-center" style="margin-bottom: 10px; margin-left: 40px; margin-right: 40px;">
-            <img src="/static/img/星火实践团logo.png" alt="logo" style="width:100px;height:100px;background:#fff;border-radius:50%;border:2px solid #fff;flex-shrink:0;">
-            <div style="font-size:1.1rem;margin-left:18px;">红色星火实践团&nbsp;&nbsp;|&nbsp;&nbsp;不畏微茫，造炬成阳</div>
+            <img src="{% static 'img/星火实践团logo.png' %}" alt="logo"
+                 style="width:100px;height:100px;background:#fff;border-radius:50%;border:2px solid #fff;flex-shrink:0;">
+            <div style="font-size:1.1rem;margin-left:18px;">红色星火实践团&nbsp;&nbsp;|&nbsp;&nbsp;不畏微茫，造炬成阳
+            </div>
             <div style="flex:1"></div>
             <div style="font-size:1.1rem; color:#ccc;">欢迎您的访问！</div>
         </div>
@@ -347,126 +375,127 @@
             <div style="flex:1"></div>
             <div class="d-flex gap-4" style="margin-right:0;">
                 <div style="width:56px;height:56px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #eaeaea;">
-                    <img src="/static/img/法律测试.png" alt="icon1" style="width:36px;height:36px;">
+                    <img src="{% static 'img/法律测试.png' %}" alt="icon1" style="width:36px;height:36px;">
                 </div>
                 <div style="width:56px;height:56px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #eaeaea;">
-                    <img src="/static/img/在线课堂.png" alt="icon2" style="width:36px;height:36px;">
+                    <img src="{% static 'img/在线课堂.png' %}" alt="icon2" style="width:36px;height:36px;">
                 </div>
                 <div style="width:56px;height:56px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #eaeaea;">
-                    <img src="/static/img/AI咨询系统.png" alt="icon3" style="width:36px;height:36px;">
+                    <img src="{% static 'img/AI咨询系统.png' %}" alt="icon3" style="width:36px;height:36px;">
                 </div>
             </div>
         </div>
-                <div class="col-lg-6">
-                    <!-- 装饰性元素 -->
-                    <div class="mt-5 d-flex justify-content-center gap-4">
-                        <div class="bg-light p-3 rounded-circle shadow" style="width: 50px; height: 50px;">
-                            <i class="fas fa-graduation-cap text-primary fs-3"></i>
+        <div class="col-lg-6">
+            <!-- 装饰性元素 -->
+            <div class="mt-5 d-flex justify-content-center gap-4">
+                <div class="bg-light p-3 rounded-circle shadow" style="width: 50px; height: 50px;">
+                    <i class="fas fa-graduation-cap text-primary fs-3"></i>
+                </div>
+                <div class="bg-light p-3 rounded-circle shadow" style="width: 50px; height: 50px;">
+                    <i class="fas fa-video text-success fs-3"></i>
+                </div>
+                <div class="bg-light p-3 rounded-circle shadow" style="width: 50px; height: 50px;">
+                    <i class="fas fa-brain text-info fs-3"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- 轮播图区域 -->
+<section class="carousel-section">
+    <div class="container">
+        <div id="featuresCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <!-- 轮播项 1 -->
+                <div class="carousel-item active">
+                    <img src="{% static 'img/法槌图片.png' %}" class="d-block w-100" alt="主页面">
+
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev">
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#featuresCarousel" data-bs-slide="next">
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- 功能介绍和模块跳转区域 -->
+<section id="features" class="features-section">
+    <div class="container">
+        <div class="section-title">
+            <h2>平台核心模块</h2>
+            <p>全面覆盖教学、学习和评估流程，为您提供一站式智能教育解决方案</p>
+        </div>
+
+        <div class="row g-5">
+            <!-- 模块卡片 1: 考试系统 -->
+            <div class="col-md-4">
+                <div class="card card-feature feature-card-1 h-100">
+                    <div class="card-body p-4">
+                        <div class="card-icon"
+                             style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
+                            <img src="{% static 'img/法律测试.png' %}" alt="考试系统" style="width:48px;height:48px;">
                         </div>
-                        <div class="bg-light p-3 rounded-circle shadow" style="width: 50px; height: 50px;">
-                            <i class="fas fa-video text-success fs-3"></i>
+                        <h3 class="card-title">考试系统</h3>
+                        <p class="card-text">
+                            在线考试、自动评分、成绩分析、即时反馈、题库管理、智能防作弊、证书颁发等功能于一体的教育评估平台。
+                        </p>
+                        <a href="{% url 'exams:exam_list' %}" class="btn btn-primary btn-card text-white">
+                            进入系统 <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模块卡片 2: 视频中心 -->
+            <div class="col-md-4">
+                <div class="card card-feature feature-card-2 h-100">
+                    <div class="card-body p-4">
+                        <div class="card-icon"
+                             style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
+                            <img src="{% static 'img/在线课堂.png' %}" alt="视频中心" style="width:48px;height:48px;">
                         </div>
-                        <div class="bg-light p-3 rounded-circle shadow" style="width: 50px; height: 50px;">
-                            <i class="fas fa-brain text-info fs-3"></i>
+                        <h3 class="card-title">视频中心</h3>
+                        <p class="card-text">
+                            高清教学视频、互动学习、多设备支持、字幕功能、进度跟踪、课程管理、视频上传与剪辑等功能的在线学习平台。
+                        </p>
+                        <a href="{% url 'video:index' %}" class="btn btn-success btn-card text-white">
+                            观看视频 <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模块卡片 3: AI模型 -->
+            <div class="col-md-4">
+                <div class="card card-feature feature-card-3 h-100">
+                    <div class="card-body p-4">
+                        <div class="card-icon"
+                             style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
+                            <img src="{% static 'img/AI咨询系统.png' %}" alt="AI模型服务" style="width:48px;height:48px;">
                         </div>
+                        <h3 class="card-title">AI模型服务</h3>
+                        <p class="card-text">
+                            智能预测分析、模型训练优化、数据处理服务、API集成、可视化分析、自动化报告等人工智能技术与服务。
+                        </p>
+                        <a href="{% url 'model_api:role_list' %}" class="btn btn-info btn-card text-white">
+                            体验AI <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- 轮播图区域 -->
-    <section class="carousel-section">
-        <div class="container">
-            <div id="featuresCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <!-- 轮播项 1 -->
-                    <div class="carousel-item active">
-                        <img src="/static/img/法槌图片.png" class="d-block w-100" alt="主页面">
-                        
-                    </div>
-            
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev">
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#featuresCarousel" data-bs-slide="next">
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- 功能介绍和模块跳转区域 -->
-    <section id="features" class="features-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>平台核心模块</h2>
-                <p>全面覆盖教学、学习和评估流程，为您提供一站式智能教育解决方案</p>
-            </div>
-
-            <div class="row g-5">
-                <!-- 模块卡片 1: 考试系统 -->
-                <div class="col-md-4">
-                    <div class="card card-feature feature-card-1 h-100">
-                        <div class="card-body p-4">
-                            <div class="card-icon" style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
-                                <img src="/static/img/法律测试.png" alt="考试系统" style="width:48px;height:48px;">
-                            </div>
-                            <h3 class="card-title">考试系统</h3>
-                            <p class="card-text">
-                                在线考试、自动评分、成绩分析、即时反馈、题库管理、智能防作弊、证书颁发等功能于一体的教育评估平台。
-                            </p>
-                            <a href="{% url 'exams:exam_list' %}" class="btn btn-primary btn-card text-white">
-                                进入系统 <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 模块卡片 2: 视频中心 -->
-                <div class="col-md-4">
-                    <div class="card card-feature feature-card-2 h-100">
-                        <div class="card-body p-4">
-                            <div class="card-icon" style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
-                                <img src="/static/img/在线课堂.png" alt="视频中心" style="width:48px;height:48px;">
-                            </div>
-                            <h3 class="card-title">视频中心</h3>
-                            <p class="card-text">
-                                高清教学视频、互动学习、多设备支持、字幕功能、进度跟踪、课程管理、视频上传与剪辑等功能的在线学习平台。
-                            </p>
-                            <a href="{% url 'video:index' %}" class="btn btn-success btn-card text-white">
-                                观看视频 <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 模块卡片 3: AI模型 -->
-                <div class="col-md-4">
-                    <div class="card card-feature feature-card-3 h-100">
-                        <div class="card-body p-4">
-                            <div class="card-icon" style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
-                                <img src="/static/img/AI咨询系统.png" alt="AI模型服务" style="width:48px;height:48px;">
-                            </div>
-                            <h3 class="card-title">AI模型服务</h3>
-                            <p class="card-text">
-                                智能预测分析、模型训练优化、数据处理服务、API集成、可视化分析、自动化报告等人工智能技术与服务。
-                            </p>
-                            <a href="{% url 'model_api:role_list' %}" class="btn btn-info btn-card text-white">
-                                体验AI <i class="fas fa-arrow-right ms-2"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
 
 
-
-    
-    <!-- 页脚 -->
+<!-- 页脚 -->
 
 <footer class="footer" style="background:#9d9292; padding:0; border-top:none; color:#fff;">
     <div style="background:#a51c1c; padding:36px 0 18px 0;">
@@ -481,39 +510,40 @@
     </div>
     <div style="background:#9d9292; padding:0;">
         <div style="
-            max-width:1800px;
-            margin:0 auto;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:40px;
-            padding:28px 0 28px 0;
-        ">
+        max-width:1800px;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:40px;
+        padding:28px 0 28px 0;
+    ">
             <!-- 左侧校徽和校名 -->
             <div style="display:flex;align-items:center;gap:28px;">
-                <img src="/static/img/天津工业大学校徽图片.png" alt="天工大logo" style="height:100px;">
+                <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:100px;">
             </div>
             <!-- 中间立方体logo -->
-            <img src="/static/img/计算机科学与技术学院院徽图片.png" alt="立方体" style="height:90px;margin:0 40px;">
+            <img src="{% static 'img/计算机科学与技术学院院徽图片.png' %}" alt="立方体"
+                 style="height:90px;margin:0 40px;">
             <!-- 右侧学院名 -->
             <div style="display:flex;flex-direction:column;align-items:flex-start;">
-                <img src="/static/img/计算机学院院字.png" alt="计算机学院院字" style="height:100px;">
+                <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:100px;">
             </div>
         </div>
     </div>
 </footer>
 
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // 初始化轮播图自动播放
-        document.addEventListener('DOMContentLoaded', function() {
-            var carousel = new bootstrap.Carousel(document.getElementById('featuresCarousel'), {
-                interval: 5000,
-                wrap: true,
-                pause: 'hover'
-            });
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // 初始化轮播图自动播放
+    document.addEventListener('DOMContentLoaded', function () {
+        var carousel = new bootstrap.Carousel(document.getElementById('featuresCarousel'), {
+            interval: 5000,
+            wrap: true,
+            pause: 'hover'
         });
-    </script>
+    });
+</script>
 </body>
 </html>

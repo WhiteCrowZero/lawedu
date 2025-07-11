@@ -3,6 +3,7 @@
 
 <head>
     <title>考试成绩 - {{ result.exam.name }}</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <style>
         /* 全局样式重置与基础设置 */
         * {
@@ -163,36 +164,36 @@
 </head>
 
 <body>
-    <!-- 结果概览区域 -->
-    <div class="result-summary">
-        <h1>{{ result.exam.name }} - 考试成绩</h1>
-        <p>完成时间: {{ result.created_at }}</p>
-        <div class="score">{{ result.score }} / {{ result.total_score }}</div>
-        {% if passed %}
-        <div class="pass-indicator pass">考试通过</div>
-        {% else %}
-        <div class="pass-indicator fail">考试未通过</div>
-        {% endif %}
-        <p>得分率: {{ percent }}%</p>
-    </div>
+<!-- 结果概览区域 -->
+<div class="result-summary">
+    <h1>{{ result.exam.name }} - 考试成绩</h1>
+    <p>完成时间: {{ result.created_at }}</p>
+    <div class="score">{{ result.score }} / {{ result.total_score }}</div>
+    {% if passed %}
+    <div class="pass-indicator pass">考试通过</div>
+    {% else %}
+    <div class="pass-indicator fail">考试未通过</div>
+    {% endif %}
+    <p>得分率: {{ percent }}%</p>
+</div>
 
-    <!-- 答题详情区域标题 -->
-    <h2>答题详情</h2>
+<!-- 答题详情区域标题 -->
+<h2>答题详情</h2>
 
-    <!-- 循环展示题目 -->
-    {% for question in questions %}
-    <div class="question {% if question.correct %}correct{% else %}incorrect{% endif %}">
-        <div class="question-header">
-            <div class="question-text">{{ forloop.counter }}. {{ question.text }}</div>
-            <div class="question-score">
-                得分: {{ question.obtained_score }} / {{ question.score }}
-            </div>
+<!-- 循环展示题目 -->
+{% for question in questions %}
+<div class="question {% if question.correct %}correct{% else %}incorrect{% endif %}">
+    <div class="question-header">
+        <div class="question-text">{{ forloop.counter }}. {{ question.text }}</div>
+        <div class="question-score">
+            得分: {{ question.obtained_score }} / {{ question.score }}
         </div>
-        <div class="answer-section">
-            {% if question.details.type == 'choice' %}
-            <div>
-                <span class="answer-label">您的选择:</span>
-                <span class="user-answer">
+    </div>
+    <div class="answer-section">
+        {% if question.details.type == 'choice' %}
+        <div>
+            <span class="answer-label">您的选择:</span>
+            <span class="user-answer">
                     {% if question.details.selected %}
                     {% for option in question.details.options %}
                     {% if option.id == question.details.selected %}
@@ -203,46 +204,46 @@
                     未作答
                     {% endif %}
                 </span>
-            </div>
-            <div>
-                <span class="answer-label">正确答案:</span>
-                <span class="correct-answer">
+        </div>
+        <div>
+            <span class="answer-label">正确答案:</span>
+            <span class="correct-answer">
                     {% for option in question.details.options %}
                     {% if option.is_correct %}
                     {{ option.text }}
                     {% endif %}
                     {% endfor %}
                 </span>
-            </div>
-            {% if question.correct %}
-            <div class="feedback">✓ 回答正确</div>
-            {% else %}
-            <div class="feedback">✗ 回答错误</div>
-            {% endif %}
+        </div>
+        {% if question.correct %}
+        <div class="feedback">✓ 回答正确</div>
+        {% else %}
+        <div class="feedback">✗ 回答错误</div>
+        {% endif %}
 
-            {% elif question.details.type == 'fill' %}
-            <div>
-                <span class="answer-label">您的答案:</span>
-                <span class="user-answer">
+        {% elif question.details.type == 'fill' %}
+        <div>
+            <span class="answer-label">您的答案:</span>
+            <span class="user-answer">
                     {{ question.details.user_answer|default:"未作答" }}
                 </span>
-            </div>
-            <div>
-                <span class="answer-label">正确答案:</span>
-                <span class="correct-answer">
+        </div>
+        <div>
+            <span class="answer-label">正确答案:</span>
+            <span class="correct-answer">
                     {{ question.details.correct_answer }}
                 </span>
-            </div>
-            {% if question.correct %}
-            <div class="feedback">✓ 回答正确</div>
-            {% else %}
-            <div class="feedback">✗ 回答错误</div>
-            {% endif %}
+        </div>
+        {% if question.correct %}
+        <div class="feedback">✓ 回答正确</div>
+        {% else %}
+        <div class="feedback">✗ 回答错误</div>
+        {% endif %}
 
-            {% elif question.details.type == 'judge' %}
-            <div>
-                <span class="answer-label">您的判断:</span>
-                <span class="user-answer">
+        {% elif question.details.type == 'judge' %}
+        <div>
+            <span class="answer-label">您的判断:</span>
+            <span class="user-answer">
                     {% if question.details.user_answer == 'true' %}
                     正确
                     {% elif question.details.user_answer == 'false' %}
@@ -251,25 +252,25 @@
                     未作答
                     {% endif %}
                 </span>
-            </div>
-            <div>
-                <span class="answer-label">正确答案:</span>
-                <span class="correct-answer">
+        </div>
+        <div>
+            <span class="answer-label">正确答案:</span>
+            <span class="correct-answer">
                     {% if question.details.correct_answer %}正确{% else %}错误{% endif %}
                 </span>
-            </div>
-            {% if question.correct %}
-            <div class="feedback">✓ 回答正确</div>
-            {% else %}
-            <div class="feedback">✗ 回答错误</div>
-            {% endif %}
-            {% endif %}
         </div>
+        {% if question.correct %}
+        <div class="feedback">✓ 回答正确</div>
+        {% else %}
+        <div class="feedback">✗ 回答错误</div>
+        {% endif %}
+        {% endif %}
     </div>
-    {% endfor %}
+</div>
+{% endfor %}
 
-    <!-- 返回按钮 -->
-    <a href="{% url 'exams:exam_list' %}" class="back-button">返回考试列表</a>
+<!-- 返回按钮 -->
+<a href="{% url 'exams:exam_list' %}" class="back-button">返回考试列表</a>
 </body>
 
 </html>

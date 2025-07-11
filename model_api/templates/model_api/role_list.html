@@ -1,9 +1,12 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>角色设定列表</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -145,7 +148,7 @@
 <body>
 <!-- 顶部横幅，完全用你的banner图片实现 -->
 <div style="width:100vw;max-width:100%;overflow:hidden;">
-    <img src="/static/img/红色星火实践团普法微课%20(3).png" alt="红色星火实践团AI咨询"
+    <img src="{% static 'img/红色星火实践团普法微课%20(3).png' %}" alt="红色星火实践团AI咨询"
          style="width:100vw;min-width:1200px;max-width:100%;display:block;">
 </div>
 
@@ -194,7 +197,7 @@
                     <div style="color:#8a8fa3; font-size:1.05rem; line-height:1.2;">{{ role.desc }}</div>
                 </div>
                 <!-- 星形法智星图标 -->
-                <img src="/static/img/法智星.png" alt="法智星"
+                <img src="{% static 'img/法智星.png' %}" alt="法智星"
                      style="width:70px; height:70px; margin-left:10px; flex-shrink:0;">
             </div>
 
@@ -250,13 +253,13 @@
         ">
         <!-- 左侧校徽和校名 -->
         <div style="display:flex;align-items:center;gap:28px;">
-            <img src="/static/img/天津工业大学校徽图片.png" alt="天工大logo" style="height:100px;">
+            <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:100px;">
         </div>
         <!-- 中间立方体logo -->
-        <img src="/static/img/计算机科学与技术学院院徽图片.png" alt="立方体" style="height:90px;margin:0 40px;">
+        <img src="{% static 'img/计算机科学与技术学院院徽图片.png' %}" alt="立方体" style="height:90px;margin:0 40px;">
         <!-- 右侧学院名 -->
         <div style="display:flex;flex-direction:column;align-items:flex-start;">
-            <img src="/static/img/计算机学院院字.png" alt="计算机学院院字" style="height:100px;">
+            <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:100px;">
         </div>
     </div>
 </div>
