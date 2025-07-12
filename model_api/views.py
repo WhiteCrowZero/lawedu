@@ -1,10 +1,8 @@
-import json
-
 from pydub import AudioSegment
 from lib.src.img_module import ImageAliyunModule
 from lib.src.llm_module import MainAliyunModule
 from lib.src.s2t_module import S2TTencentCloudModule
-from lib.src.t2s_module import TtsMakerModule
+from lib.src.t2s_module import TencentTTSModule
 from lib.src.utils import data_processing
 from lib.src.integrated_modules import AiApiModule
 
@@ -22,16 +20,15 @@ from django.db.models import Q
 # 初始化模型
 def model_init():
     # 语音识别
-    config = data_processing.load_config_json("lib/doc/tencentcloud_config.json")
-    s2t_module = S2TTencentCloudModule(api_config=config)
+    tencent_config = data_processing.load_config_json("lib/doc/tencentcloud_config.json")
+    s2t_module = S2TTencentCloudModule(api_config=tencent_config)
     # 图像识别
     aliyun_config = data_processing.load_config_json("lib/doc/aliyun_config.json")
     img_module = ImageAliyunModule(api_config=aliyun_config, model="qwen2.5-vl-7b-instruct")
     # 大模型
     llm_module = MainAliyunModule(api_config=aliyun_config, model="qwen-turbo-latest")
     # 语音合成
-    # ttsmaker_config = data_processing.load_config_json("lib/doc/ttsmaker_config.json")
-    t2s_module = TtsMakerModule(audio_root='media/output')
+    t2s_module = TencentTTSModule(audio_root='media/output', api_config=tencent_config)
     return AiApiModule(
         s2t_module=s2t_module,
         img_module=img_module,
