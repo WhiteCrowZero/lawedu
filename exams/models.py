@@ -23,7 +23,7 @@ class Question(models.Model):
         ('judge', '判断题'),
     )
 
-    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='questions')
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, related_name='questions', verbose_name="考试")
     question_type = models.CharField("题目类型", max_length=10, choices=QUESTION_TYPES)
     # answer = models.OneToOneField(Answer, on_delete=models.SET_NULL, null=True, blank=True, related_name='question')
     text = models.TextField("题目内容")
@@ -59,7 +59,7 @@ class Answer(models.Model):
 
 class ExamResult(models.Model):
     """考试结果模型"""
-    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE, verbose_name="考试")
     session_key = models.CharField("会话标识", max_length=40)
     score = models.PositiveSmallIntegerField("得分")
     total_score = models.PositiveSmallIntegerField("总分")

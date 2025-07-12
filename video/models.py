@@ -25,12 +25,12 @@ class Classify(models.Model):
 
 
 class Video(models.Model):
-    title = models.CharField(max_length=100, blank=True, null=True)
-    desc = models.CharField(max_length=10, blank=True, null=True)
-    file = models.FileField(max_length=255)
-    cover = models.ImageField(upload_to='cover/', blank=True, null=True)
-    view_count = models.IntegerField(default=0, blank=True)
-    create_time = models.DateTimeField(auto_now_add=True, blank=True, max_length=20)
+    title = models.CharField(max_length=100, blank=True, null=True, verbose_name="标题")
+    desc = models.CharField(max_length=10, blank=True, null=True, verbose_name="描述")
+    file = models.FileField(max_length=255, verbose_name="视频文件", upload_to='video/')
+    cover = models.ImageField(upload_to='cover/', blank=True, null=True, verbose_name="封面")
+    view_count = models.IntegerField(default=0, blank=True, verbose_name="观看次数")
+    create_time = models.DateTimeField(auto_now_add=True, blank=True, max_length=20, verbose_name="创建时间")
 
     objects = VideoQuerySet.as_manager()
 
