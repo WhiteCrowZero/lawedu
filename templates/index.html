@@ -354,7 +354,7 @@
         <div class="d-flex align-items-center" style="margin-bottom: 10px; margin-left: 40px; margin-right: 40px;">
             <img src="{% static 'img/星火实践团logo.png' %}" alt="logo"
                  style="width:100px;height:100px;background:#fff;border-radius:50%;border:2px solid #fff;flex-shrink:0;">
-            <div style="font-size:1.1rem;margin-left:18px;">红色星火实践团&nbsp;&nbsp;|&nbsp;&nbsp;不畏微茫，造炬成阳
+            <div style="font-size:1.1rem;margin-left:18px;">红色星火实践团&nbsp;&nbsp;|&nbsp;&nbsp;不啻微茫，造炬成阳
             </div>
             <div style="flex:1"></div>
             <div style="font-size:1.1rem; color:#ccc;">欢迎您的访问！</div>
@@ -363,7 +363,8 @@
         <div style="margin-left: 128px; max-width: 600px;">
             <div style="font-size:2.8rem;font-weight:bold;letter-spacing:2px;margin-bottom:10px;">三下乡普法平台</div>
             <div style="font-size:1rem;margin-bottom:22px;">
-                融合多元功能，法律测试助力知识巩固检验，在线课堂提供便利学法通道，AI咨询系统实时解疑，全方位构建学法、验法、用法生态
+                <p>融合多元功能，法律测试助力知识巩固检验，在线课堂提供便利学法通道，</p>
+                <p>AI咨询系统实时解疑，全方位构建学法、验法、用法生态</p>
             </div>
         </div>
         <!-- 按钮和图标同一行 -->
@@ -430,21 +431,21 @@
     <div class="container">
         <div class="section-title">
             <h2>平台核心模块</h2>
-            <p>全面覆盖教学、学习和评估流程，为您提供一站式智能教育解决方案</p>
+            <p>法律测试验学、在线课堂授学、AI咨询辅用，合力推进普法实效落地</p>
         </div>
 
         <div class="row g-5">
-            <!-- 模块卡片 1: 考试系统 -->
+            <!-- 模块卡片 1: 法律测试 -->
             <div class="col-md-4">
                 <div class="card card-feature feature-card-1 h-100">
                     <div class="card-body p-4">
                         <div class="card-icon"
                              style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
-                            <img src="{% static 'img/法律测试.png' %}" alt="考试系统" style="width:48px;height:48px;">
+                            <img src="{% static 'img/法律测试.png' %}" alt="法律测试" style="width:48px;height:48px;">
                         </div>
-                        <h3 class="card-title">考试系统</h3>
+                        <h3 class="card-title">法律测试</h3>
                         <p class="card-text">
-                            在线考试、自动评分、成绩分析、即时反馈、题库管理、智能防作弊、证书颁发等功能于一体的教育评估平台。
+                            在线限时测试，自动评分，提交后显示答题详情，助力复盘巩固。
                         </p>
                         <a href="{% url 'exams:exam_list' %}" class="btn btn-primary btn-card text-white">
                             进入系统 <i class="fas fa-arrow-right ms-2"></i>
@@ -453,17 +454,17 @@
                 </div>
             </div>
 
-            <!-- 模块卡片 2: 视频中心 -->
+            <!-- 模块卡片 2: 在线课堂 -->
             <div class="col-md-4">
                 <div class="card card-feature feature-card-2 h-100">
                     <div class="card-body p-4">
                         <div class="card-icon"
                              style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
-                            <img src="{% static 'img/在线课堂.png' %}" alt="视频中心" style="width:48px;height:48px;">
+                            <img src="{% static 'img/在线课堂.png' %}" alt="在线课堂" style="width:48px;height:48px;">
                         </div>
-                        <h3 class="card-title">视频中心</h3>
+                        <h3 class="card-title">在线课堂</h3>
                         <p class="card-text">
-                            高清教学视频、互动学习、多设备支持、字幕功能、进度跟踪、课程管理、视频上传与剪辑等功能的在线学习平台。
+                            高清教学视频，让法律知识易懂可及，助力公众知法懂法。
                         </p>
                         <a href="{% url 'video:index' %}" class="btn btn-success btn-card text-white">
                             观看视频 <i class="fas fa-arrow-right ms-2"></i>
@@ -472,17 +473,18 @@
                 </div>
             </div>
 
-            <!-- 模块卡片 3: AI模型 -->
+            <!-- 模块卡片 3: AI咨询系统 -->
             <div class="col-md-4">
                 <div class="card card-feature feature-card-3 h-100">
                     <div class="card-body p-4">
                         <div class="card-icon"
                              style="background:#fff;border:2px solid #eaeaea;display:flex;align-items:center;justify-content:center;width:80px;height:80px;border-radius:50%;margin:0 auto 25px;">
-                            <img src="{% static 'img/AI咨询系统.png' %}" alt="AI模型服务" style="width:48px;height:48px;">
+                            <img src="{% static 'img/AI咨询系统.png' %}" alt="AI咨询系统"
+                                 style="width:48px;height:48px;">
                         </div>
-                        <h3 class="card-title">AI模型服务</h3>
+                        <h3 class="card-title">AI咨询系统</h3>
                         <p class="card-text">
-                            智能预测分析、模型训练优化、数据处理服务、API集成、可视化分析、自动化报告等人工智能技术与服务。
+                            AI咨询服务支持录音、图片上传、及语音、文字对话功能，便捷高效。
                         </p>
                         <a href="{% url 'model_api:role_list' %}" class="btn btn-info btn-card text-white">
                             体验AI <i class="fas fa-arrow-right ms-2"></i>
@@ -502,9 +504,8 @@
         <div style="max-width:1400px;margin:0 auto;">
             <div style="height:16px;background:#fff;margin:0 auto 24px auto;max-width:90%;"></div>
             <div style="font-size:1.25rem;line-height:2.2rem;text-align:center;">
-                红色星火实践团以“法治乡村，青春护航”为宗旨，构建“线下宣讲+墙绘宣传+线上网页”三位一体普法模式。<br>
-                宣讲组用情景案例讲透法律知识，墙绘组以法治漫画装点乡村，网页组打造便捷线上普法平台。<br>
-                团队已走进10余个社区，开展20余场宣讲，绘制10多幅普法墙绘，切实提升村民法治意识，助力乡村法治建设。
+                <p>红色星火实践团以“法治乡村，青春护航”为宗旨，创新打造“线下宣讲+墙绘宣传+线上网页”普法模式。</p>
+                <p>通过情景案例宣讲、法治漫画墙绘、线上知识科普，多维度普及法律。已覆盖20余学校、社区，开展30余场活动，助力乡村法治建设。</p>
             </div>
         </div>
     </div>
