@@ -15,10 +15,11 @@
 
         body {
             font-family: "Microsoft YaHei", Arial, sans-serif;
-            background-color: #f7f9fc;
+            background-color: #fdf5f5; /* 高级优雅的浅红粉调 */
             color: #333;
             line-height: 1.6;
         }
+
 
         /* 结果概览区域 */
         .result-summary {
@@ -144,22 +145,22 @@
 
         /* 返回按钮样式 */
         .back-button {
-            display: inline-block;
+            display: block;
+            margin: 50px auto;
+            width: 200px;
+            text-align: center;
             padding: 12px 30px;
-            background-color: #2196F3;
+            background-color: #d44a4a;
             color: white;
             text-decoration: none;
             border-radius: 6px;
-            margin: 30px auto;
-            display: block;
-            width: 200px;
-            text-align: center;
             font-weight: bold;
+            font-size: 1.1em;
             transition: background-color 0.3s ease;
         }
 
         .back-button:hover {
-            background-color: #0b7dda;
+            background-color: #e95b5b;
         }
     </style>
 </head>
@@ -195,16 +196,12 @@
         <div>
             <span class="answer-label">您的选择:</span>
             <span class="user-answer">
-                    {% if question.details.selected %}
-                    {% for option in question.details.options %}
-                    {% if option.id == question.details.selected %}
-                    {{ option.text }}
-                    {% endif %}
-                    {% endfor %}
-                    {% else %}
-                    未作答
-                    {% endif %}
-                </span>
+            {% if question.details.user_answer %}
+                {{ question.details.user_answer }}
+            {% else %}
+                未作答
+            {% endif %}
+            </span>
         </div>
         <div>
             <span class="answer-label">正确答案:</span>

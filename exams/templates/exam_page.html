@@ -6,86 +6,98 @@
     <title>{{ exam.name }} - 考试中</title>
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Microsoft YaHei", Arial, sans-serif;
-            background-color: #fff;
-            color: #333;
-            line-height: 1.6;
-        }
+    body {
+        font-family: "Microsoft YaHei", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #fdf6f6;
+        color: #333;
+    }
 
-        #timer {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background-color: #333;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 3px;
-            font-weight: bold;
-        }
+    #timer {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        background-color: #d44a4a;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-weight: bold;
+        z-index: 999;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .question {
-            margin-bottom: 25px;
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
+    h1 {
+        text-align: center;
+        color: #b73737;
+        margin-top: 30px;
+    }
 
-        }
+    p {
+        text-align: center;
+        color: #666;
+        margin-bottom: 40px;
+    }
 
-        .question:hover {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transform: translateY(-2px);
-        }
+    .question {
+        max-width: 800px;
+        margin: 0 auto 30px;
+        padding: 20px;
+        background-color: #fff;
+        border-left: 5px solid #d44a4a;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(212, 74, 74, 0.05);
+    }
 
-        .question-text {
-            font-weight: bold;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: #2c3e50;
-        }
+    .question-text {
+        font-weight: bold;
+        color: #333;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
 
-        .options {
-            margin-left: 20px;
-        }
+    .options {
+        margin-top: 10px;
+        padding-left: 20px;
+    }
 
-        .option {
-            margin: 5px 0;
-        }
+    .option {
+        margin: 6px 0;
+    }
 
-        #submit-btn {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
+    input[type="radio"],
+    input[type="text"] {
+        margin-right: 8px;
+    }
 
-        }
+    #submit-btn {
+        display: block;
+        margin: 40px auto;
+        background-color: #d44a4a;
+        color: white;
+        padding: 12px 24px;
+        font-size: 1.1em;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        #submit-btn:hover {
-            background-color: #45a049;
-            transform: translateY(-2px);
-        }
-    </style>
+    #submit-btn:hover {
+        background-color: #e95b5b;
+    }
+</style>
+
 </head>
 
 <body>
 <div id="timer">
-    剩余时间: <span id="minutes">{{ duration_minutes }}</span>:<span id="seconds">00</span>
-    <br>
-    <span>时间结束将自动提交试卷</span>
+    剩余时间: <span id="minutes">{{ duration_minutes }}</span>:<span id="seconds">00</span><br>
+    <span style="font-weight: normal; font-size: 12px;">时间结束将自动提交试卷</span>
 </div>
 
 <h1>{{ exam.name }}</h1>
 <p>{{ exam.description }}</p>
-
 
 <form id="exam-form">
     {% for question in questions %}
@@ -99,9 +111,7 @@
                 <input type="radio" name="question-{{ question.id }}" value="{{ option.id }}"
                        id="option-{{ option.id }}">
                 <label for="option-{{ option.id }}">{{ option.text }}</label>
-
             </div>
-
             {% endfor %}
         </div>
 
@@ -141,7 +151,6 @@
         }
 
         if (minutes < 0) {
-            // 时间到，自动提交
             submitExam();
             return;
         }
@@ -152,10 +161,8 @@
         setTimeout(updateTimer, 1000);
     }
 
-    // 开始计时
     setTimeout(updateTimer, 1000);
 
-    // 提交考试
     document.getElementById('submit-btn').addEventListener('click', submitExam);
 
     function submitExam() {
@@ -166,22 +173,14 @@
             const questionId = question.dataset.id;
             let answerValue = '';
 
-            // 选择题
             const selectedOption = question.querySelector('input[type="radio"]:checked');
             if (selectedOption) {
                 answerValue = selectedOption.value;
             }
 
-            // 填空题
             const textInput = question.querySelector('input[type="text"]');
             if (textInput) {
                 answerValue = textInput.value;
-            }
-
-            // 判断题
-            const selectedJudgeOption = question.querySelector('input[type="radio"]:checked');
-            if (selectedJudgeOption) {
-                answerValue = selectedJudgeOption.value;
             }
 
             answers.push({
@@ -190,7 +189,6 @@
             });
         });
 
-        // 发送提交请求
         fetch("{% url 'exams:submit_exam' exam.id %}", {
             method: 'POST',
             headers: {
@@ -199,14 +197,13 @@
             },
             body: JSON.stringify({answers: answers})
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = `/exams/result/${data.result_id}/`;
-                }
-            });
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = `/exams/result/${data.result_id}/`;
+            }
+        });
     }
 </script>
 </body>
-
 </html>

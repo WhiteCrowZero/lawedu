@@ -4,9 +4,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="三下乡普法教育视频播放平台">
-    <meta name="google-site-verification" content="UhrjUG70pwiY6Sp4u4p5Q3ol8iD7yx4ZSwmGBpoaWik" />
+    <meta name="google-site-verification" content="UhrjUG70pwiY6Sp4u4p5Q3ol8iD7yx4ZSwmGBpoaWik"/>
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
-    <title>视频点播</title>
+    <title>三下乡普法教育视频播放平台</title>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/semantic-ui/2.4.1/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/semantic.custom.css' %}">
@@ -26,19 +26,19 @@
 
 <body>
 
-    {% include "base/header.html" %}
-    <div class="ui container" id="v-content">
-        {% block content %}
-        {% endblock content %}
-    </div>
-    {% include "base/footer.html" %}
+{% include "base/header.html" %}
+<div class="ui container" id="v-content">
+    {% block content %}
+    {% endblock content %}
+</div>
+{% include "base/footer.html" %}
 
-    <script src="https://cdn.staticfile.org/jquery/1.9.0/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/semantic-ui/2.4.1/semantic.min.js"></script>
-    <script>
-        var search_url = "{% url 'video:search' %}"
-    </script>
-    <script src="{% static 'js/header.js' %}"></script>
+<script src="https://cdn.staticfile.org/jquery/1.9.0/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/semantic-ui/2.4.1/semantic.min.js"></script>
+<script>
+    var search_url = "{% url 'video:search' %}"
+</script>
+<script src="{% static 'js/header.js' %}"></script>
 
 </body>
 

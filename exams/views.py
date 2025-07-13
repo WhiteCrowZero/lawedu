@@ -84,6 +84,10 @@ class SubmitExamView(View):
                     # 验证答案
                     if question.question_type == 'choice':
                         # 选择题：验证选项是否正确
+                        if user_answer:
+                            user_answer = int(user_answer)
+                            if user_answer < 1 or user_answer > question.options.count():
+                                user_answer = ''
                         selected_option = ChoiceOption.objects.get(id=user_answer)
                         if selected_option.is_correct:
                             user_score += question.score
@@ -105,7 +109,7 @@ class SubmitExamView(View):
                 # 保存用户答案
                 answers[question_id] = user_answer
 
-            except (Question.DoesNotExist, ChoiceOption.DoesNotExist):
+            except (Question.DoesNotExist, ):
                 pass
 
         # 保存考试结果
@@ -139,12 +143,15 @@ class ResultView(View):
             correct = False
 
             if question.question_type == 'choice':
-                # 选择题
+                # 选择题处理逻辑
                 try:
-                    selected_option = ChoiceOption.objects.get(id=user_answer)
+                    selected_option = ChoiceOption.objects.get(id=int(user_answer))
+                    user_answer_text = selected_option.text
                     correct = selected_option.is_correct
                 except (ValueError, ChoiceOption.DoesNotExist):
-                    pass
+                    # 当选项不存在时，尝试获取选项文本
+                    user_answer_text = "已删除的选项"  # 占位文本
+                    correct = False
 
                 options = [
                     {'id': opt.id, 'text': opt.text, 'is_correct': opt.is_correct}
@@ -154,7 +161,7 @@ class ResultView(View):
                 question_data = {
                     'type': 'choice',
                     'options': options,
-                    'selected': user_answer
+                    'user_answer': user_answer_text  # 使用文本而非ID
                 }
 
             elif question.question_type == 'fill':
@@ -193,4 +200,3 @@ class ResultView(View):
             'percent': percent
         }
         return render(request, 'exam_result.html', context)
-
