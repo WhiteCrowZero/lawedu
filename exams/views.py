@@ -84,10 +84,6 @@ class SubmitExamView(View):
                     # 验证答案
                     if question.question_type == 'choice':
                         # 选择题：验证选项是否正确
-                        if user_answer:
-                            user_answer = int(user_answer)
-                            if user_answer < 1 or user_answer > question.options.count():
-                                user_answer = ''
                         selected_option = ChoiceOption.objects.get(id=user_answer)
                         if selected_option.is_correct:
                             user_score += question.score
@@ -141,12 +137,14 @@ class ResultView(View):
         for question in exam.questions.order_by('order'):
             user_answer = result.answers.get(str(question.id), '')
             correct = False
+            print('id', user_answer)
 
             if question.question_type == 'choice':
                 # 选择题处理逻辑
                 try:
                     selected_option = ChoiceOption.objects.get(id=int(user_answer))
                     user_answer_text = selected_option.text
+                    print(user_answer_text)
                     correct = selected_option.is_correct
                 except (ValueError, ChoiceOption.DoesNotExist):
                     # 当选项不存在时，尝试获取选项文本
