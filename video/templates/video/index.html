@@ -84,7 +84,7 @@
 
 <div class="ui hidden divider"></div>
 <div class="ui grid">
-    {% for item in video_list %}
+    {% for item in video_list reversed %}
     <div class="four wide column">
         <div class="ui card">
             <a class="image" href="{% url 'video:detail' item.pk %}">
