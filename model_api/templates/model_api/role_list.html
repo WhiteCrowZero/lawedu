@@ -5,11 +5,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>角色设定列表</title>
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .nav-header {
+            background-color: #b73737;
+            padding: 10px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #fdf7f5;
+        }
+
         :root {
             --primary-color: #4e73df;
             --secondary-color: #858796;
@@ -146,7 +169,16 @@
     </style>
 </head>
 <body>
-<!-- 顶部横幅，完全用你的banner图片实现 -->
+<!-- 顶部导航栏 -->
+<div class="nav-header">
+    <div class="nav-links">
+        <a href="{% url 'home' %}">首页</a>
+        <a href="{% url 'exams:exam_list' %}">法律测试</a>
+        <a href="{% url 'video:index' %}">在线课堂</a>
+        <a href="{% url 'model_api:role_list' %}">AI咨询</a>
+        <a href="{% url 'us' %}">关于</a>
+    </div>
+</div>
 <div style="width:100vw;max-width:100%;overflow:hidden;">
     <img src="{% static 'img/红色星火实践团普法微课.png' %}" alt="红色星火实践团AI咨询"
          style="width:100vw;min-width:1200px;max-width:100%;display:block;">
@@ -243,23 +275,24 @@
 
 <div style="background:#9d9292; padding:0;">
     <div style="
-            max-width:1800px;
-            margin:0 auto;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            gap:40px;
-            padding:28px 0 28px 0;
-        ">
+        max-width:1800px;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        padding:10px 0 10px 0;
+    ">
         <!-- 左侧校徽和校名 -->
         <div style="display:flex;align-items:center;gap:28px;">
-            <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:100px;">
+            <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:40px;">
         </div>
         <!-- 中间立方体logo -->
-        <img src="{% static 'img/计算机科学与技术学院院徽图片.png' %}" alt="立方体" style="height:90px;margin:0 40px;">
+        <img src="{% static 'img/计算机科学与技术学院院徽图片.png' %}" alt="立方体"
+             style="height:40px;">
         <!-- 右侧学院名 -->
         <div style="display:flex;flex-direction:column;align-items:flex-start;">
-            <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:100px;">
+            <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:40px;">
         </div>
     </div>
 </div>

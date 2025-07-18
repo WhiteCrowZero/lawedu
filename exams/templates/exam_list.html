@@ -5,6 +5,7 @@
     <title>考试列表</title>
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <!-- 页面整体结构不变，仅优化样式和色调 -->
+    
 <style>
     body {
         background-color: #fdf7f5;
@@ -14,6 +15,30 @@
         padding: 0;
     }
 
+    .nav-header {
+        background-color: #b73737;
+        /* 深红背景，匹配设计 */
+        padding: 10px 0;
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: space-evenly;
+        /* 均匀分布导航项 */
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .nav-links a:hover {
+        color: #fdf7f5;
+        /*  hover 时浅红高亮 */
+    }
     .top-banner img {
         width: 100%;
         display: block;
@@ -96,6 +121,15 @@
 
 </head>
 <body>
+<div class="nav-header">
+    <div class="nav-links">
+        <a href="{% url 'home' %}">首页</a>
+        <a href="{% url 'exams:exam_list' %}">法律测试</a>
+        <a href="{% url 'video:index' %}">在线课堂</a>
+        <a href="{% url 'model_api:role_list' %}">AI咨询</a>
+        <a href="{% url 'us' %}">关于</a>
+    </div>
+</div>
 <div class="top-banner">
     <a href="{% url 'home' %}"><img src="{% static 'img/1.png' %}" alt="顶部 banner"></a>
 </div>
@@ -115,10 +149,30 @@
     {% endfor %}
 </div>
 
-<div class="bottom-info">
-    <img src="{% static 'img/4.png' %}" alt="校徽">
-    <img src="{% static 'img/5.png' %}" alt="校徽">
-    <img src="{% static 'img/6.png' %}" alt="校徽">
-</div>
+<footer class="footer" style="background:#9d9292; padding:0; border-top:none; color:#fff;">
+    <div style="background:#9d9292; padding:0;">
+        <div style="
+        max-width:1800px;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        padding:10px 0 10px 0;
+    ">
+            <!-- 左侧校徽和校名 -->
+            <div style="display:flex;align-items:center;gap:28px;">
+                <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:40px;">
+            </div>
+            <!-- 中间立方体logo -->
+            <img src="{% static 'img/计算机科学与技术学院院徽图片.png' %}" alt="立方体"
+                 style="height:40px;">
+            <!-- 右侧学院名 -->
+            <div style="display:flex;flex-direction:column;align-items:flex-start;">
+                <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:40px;">
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>

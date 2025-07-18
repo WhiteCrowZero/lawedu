@@ -6,6 +6,29 @@
 
 
 <style>
+    .nav-header {
+        background-color: #b73737;
+        padding: 10px 0;
+        margin-bottom: 20px;
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .nav-links a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .nav-links a:hover {
+        color: #fdf7f5;
+    }
+
     .ui.card {
         border: 1px solid #e5e5e5;
 
@@ -76,6 +99,15 @@
 
     }
 </style>
+<div class="nav-header">
+    <div class="nav-links">
+        <a href="{% url 'home' %}">首页</a>
+        <a href="{% url 'exams:exam_list' %}">法律测试</a>
+        <a href="{% url 'video:index' %}">在线课堂</a>
+        <a href="{% url 'model_api:role_list' %}">AI咨询</a>
+        <a href="{% url 'us' %}">关于</a>
+    </div>
+</div>
 <div class="v-header-banner">
 
     <img src="{% static 'img/7.png' %}" alt="红色星火实践团普法微课" style="max-width: 100%; height: auto;">

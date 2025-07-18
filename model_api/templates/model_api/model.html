@@ -5,15 +5,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>红色星火实践团AI</title>
+    <title>法智星AI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <style>
+        .nav-header {
+            background-color: #b73737;
+            padding: 10px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #fdf7f5;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        .logo h1 a {
+            color: #c0392b; /* 你想要的红色，可以换成其他颜色值 */
+            text-decoration: none; /* 可选，去掉下划线 */
         }
 
         :root {
@@ -570,7 +597,16 @@
     </style>
 </head>
 <body>
-
+<!-- 顶部导航栏 -->
+<div class="nav-header">
+    <div class="nav-links">
+        <a href="{% url 'home' %}">首页</a>
+        <a href="{% url 'exams:exam_list' %}">法律测试</a>
+        <a href="{% url 'video:index' %}">在线课堂</a>
+        <a href="{% url 'model_api:role_list' %}">AI咨询</a>
+        <a href="{% url 'us' %}">关于</a>
+    </div>
+</div>
 
 <div class="container">
     <header>
@@ -580,7 +616,7 @@
                 <!-- 用图片替换原来的icon，图片自适应居中 -->
 
                 <img src="{% static 'img/星火实践团logo.png' %}" alt="logo"
-                     style="width:150px;height:150px;object-fit:contain;display:block;">
+                     style="width:100px;height:100px;object-fit:contain;display:block;">
             </div>
             <h1>
                 <a href="{%  url 'home' %}">
@@ -1058,27 +1094,27 @@
 
 </script>
 
-<footer>
-    <div style="background:#9d9292; width:99vw; min-width:99vw; margin-left:calc(50% - 50vw);">
+<footer class="footer" style="background:#9d9292; padding:0; border-top:none; color:#fff;">
+    <div style="background:#9d9292; padding:0;">
         <div style="
         max-width:1800px;
         margin:0 auto;
         display:flex;
         align-items:center;
         justify-content:center;
-        gap:40px;
-        padding:28px 0 28px 0;
+        gap:10px;
+        padding:10px 0 10px 0;
     ">
             <!-- 左侧校徽和校名 -->
             <div style="display:flex;align-items:center;gap:28px;">
-                <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:100px;">
+                <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:40px;">
             </div>
             <!-- 中间立方体logo -->
             <img src="{% static 'img/计算机科学与技术学院院徽图片.png' %}" alt="立方体"
-                 style="height:90px;margin:0 40px;">
+                 style="height:40px;">
             <!-- 右侧学院名 -->
             <div style="display:flex;flex-direction:column;align-items:flex-start;">
-                <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:100px;">
+                <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:40px;">
             </div>
         </div>
     </div>

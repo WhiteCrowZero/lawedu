@@ -15,6 +15,28 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        .nav-header {
+            background-color: #b73737;
+            padding: 10px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #fdf7f5;
+        }
+
         :root {
             --primary-color: #4e73df;
             --secondary-color: #858796;
@@ -210,6 +232,27 @@
             border-color: var(--info-color);
         }
 
+        /* 确保控制按钮位于轮播容器之上 */
+        #featuresCarousel .carousel-control-prev,
+        #featuresCarousel .carousel-control-next {
+            position: absolute; /* 必须为absolute或fixed */
+            z-index: 1000; /* 设置足够高的层级 */
+
+            /* 定位调整（根据实际需求） */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* 隐藏文本但保留可访问性 */
+        #featuresCarousel .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+        }
+
         .btn-card:hover {
             opacity: 0.9;
             transform: translateY(-2px);
@@ -347,6 +390,16 @@
 </head>
 <body style="background:#fff;">
 
+<div class="nav-header">
+    <div class="nav-links">
+        <a href="{% url 'home' %}">首页</a>
+        <a href="{% url 'exams:exam_list' %}">法律测试</a>
+        <a href="{% url 'video:index' %}">在线课堂</a>
+        <a href="{% url 'model_api:role_list' %}">AI咨询</a>
+        <a href="{% url 'us' %}">关于</a>
+    </div>
+</div>
+
 <!-- Hero 区域 -->
 <section class="header-banner" style="background: #a51c1c; color: #fff; padding-bottom: 0;">
     <div class="container-fluid px-0 py-4">
@@ -409,11 +462,18 @@
     <div class="container">
         <div id="featuresCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <!-- 轮播项 1 -->
                 <div class="carousel-item active">
-                    <img src="{% static 'img/法槌图片.png' %}" class="d-block w-100" alt="主页面">
+                    <img src="{% static 'img/大寺中学 (9).png' %}" class="d-block w-100" alt="主页面">
                 </div>
-
+                <div class="carousel-item">
+                    <img src="{% static 'img/德才里 (3).png' %}" class="d-block w-100" alt="主页面">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/盛兴家园 (7).png' %}" class="d-block w-100" alt="主页面">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/实践团小朋友合照.png' %}" class="d-block w-100" alt="主页面">
+                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#featuresCarousel" data-bs-slide="prev">
                 <span class="visually-hidden">Previous</span>
@@ -504,7 +564,8 @@
             <div style="height:8px;background:#fff;margin:0 auto 24px auto;max-width:90%;"></div>
             <div style="font-size:1.25rem;line-height:2.2rem;text-align:center;">
                 <p>红色星火实践团以“法治乡村，青春护航”为宗旨，创新打造“线下宣讲+墙绘宣传+线上网页”普法模式。</p>
-                <p>通过情景案例宣讲、法治漫画墙绘、线上知识科普，多维度普及法律。已覆盖20余学校、社区，开展30余场活动，助力乡村法治建设。</p>
+                <p>
+                    通过情景案例宣讲、法治漫画墙绘、线上知识科普，多维度普及法律。已覆盖20余学校、社区，开展30余场活动，助力乡村法治建设。</p>
             </div>
         </div>
     </div>
@@ -515,19 +576,19 @@
         display:flex;
         align-items:center;
         justify-content:center;
-        gap:40px;
-        padding:28px 0 28px 0;
+        gap:10px;
+        padding:10px 0 10px 0;
     ">
             <!-- 左侧校徽和校名 -->
             <div style="display:flex;align-items:center;gap:28px;">
-                <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:100px;">
+                <img src="{% static 'img/天津工业大学校徽图片.png' %}" alt="天工大logo" style="height:40px;">
             </div>
             <!-- 中间立方体logo -->
             <img src="{% static 'img/计算机科学与技术学院院徽图片.png' %}" alt="立方体"
-                 style="height:90px;margin:0 40px;">
+                 style="height:40px;">
             <!-- 右侧学院名 -->
             <div style="display:flex;flex-direction:column;align-items:flex-start;">
-                <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:100px;">
+                <img src="{% static 'img/计算机学院院字.png' %}" alt="计算机学院院字" style="height:40px;">
             </div>
         </div>
     </div>
@@ -539,7 +600,7 @@
     // 初始化轮播图自动播放
     document.addEventListener('DOMContentLoaded', function () {
         var carousel = new bootstrap.Carousel(document.getElementById('featuresCarousel'), {
-            interval: 5000,
+            interval: 3000,
             wrap: true,
             pause: 'hover'
         });
