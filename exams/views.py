@@ -148,7 +148,7 @@ class ResultView(View):
                     correct = selected_option.is_correct
                 except (ValueError, ChoiceOption.DoesNotExist):
                     # 当选项不存在时，尝试获取选项文本
-                    user_answer_text = "已删除的选项"  # 占位文本
+                    user_answer_text = ""  # 占位文本
                     correct = False
 
                 options = [
