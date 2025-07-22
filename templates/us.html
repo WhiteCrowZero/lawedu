@@ -360,6 +360,10 @@
         .nav-links a:hover {
             color: #fdf7f5;
         }
+
+        a {
+            text-decoration: none;
+        }
     </style>
 </head>
 
@@ -437,9 +441,11 @@
             <h3>网页组</h3>
             <div class="team-members">
                 <div class="team-card">
-                    <img src="{% static 'img/team_photos/member1.jpg' %}" alt="成员1照片" class="team-photo">
-                    <div class="team-name">王正旺</div>
-                    <div class="team-role">负责网页整体规划及后端开发</div>
+                    <a href="https://github.com/WhiteCrowZero" target="_blank">
+                        <img src="{% static 'img/team_photos/member1.jpg' %}" alt="成员1照片" class="team-photo">
+                        <div class="team-name">王正旺</div>
+                        <div class="team-role">负责网页整体规划及后端开发</div>
+                    </a>
                 </div>
                 <div class="team-card">
                     <img src="{% static 'img/team_photos/member2.jpg' %}" alt="成员2照片" class="team-photo">
